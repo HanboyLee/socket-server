@@ -70,7 +70,7 @@ io.on(`connection`, (socket) => {
         //當前用戶離開房間,且將從發送新的用戶數到目前房間內
         socket.leave(data.roomId);
 
-        const inRoomUser = io.sockets.adapter.rooms.get(roomname);
+        const inRoomUser = io.sockets.adapter.rooms.get(data.roomId);
         const numberOfUser = [...new Set([...inRoomUser.entries()].flat())].length;
         io.emit('numberOfUser', numberOfUser);
         console.log(`User ${data.username} leave the ${data.roomname}`);
